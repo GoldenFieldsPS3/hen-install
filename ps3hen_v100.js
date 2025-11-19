@@ -2380,7 +2380,7 @@ function dex()
 			//loadcex_491();
 			//disable_trigger();
 			break;
-		
+			
 		case "4.92":
 			//if(document.getElementById('dex').checked===true){loaddex_492();}//alert("calling loaddex_492");
 			//else {loadcex_492();}
@@ -2405,42 +2405,6 @@ function showResult(str)
 {
 	setInnerHTML(document.getElementById('result'),str);
 }
-function findJsVariableOffset(name, exploit_data, base, size) {
-  readMemory(base, size);
-  var dat = document.getElementById('exploit').style.src.substr(6, size);
-  var exploit_addr = -1;  // Use -1 to indicate not found
-
-  var k = dat.indexOf(exploit_data);
-  if (k !== -1) {
-    exploit_addr = base + k * 2 + 4;
-    if (offset_array.indexOf(exploit_addr) === -1) {
-      offset_array.push(exploit_addr);
-      logAdd("Found " + name + " at: 0x" + exploit_addr.toString(16) + br + exploit_data.toAscii(true));
-    } else {
-      logAdd("Offset already used for " + name);
-      return -1;
-    }
-  } else {
-    logAdd("The string variable named " + name + " could not be located in range 0x" + base.toString(16) + " - 0x" + (base + size).toString(16));
-  }
-  return exploit_addr;
-}
-/*
-function findJsVariableOffset(name, exploit_data, base, size) {
-  readMemory(base, size);
-  var dat = document.getElementById('exploit').style.src.substr(6, size);
-  var exploit_addr = 0;
-  
-  var k = dat.indexOf(exploit_data);
-  if (k !== -1) {
-    exploit_addr = base + k * 2 + 4;
-    logAdd("Found " + name + " at: 0x" + exploit_addr.toString(16) + br + exploit_data.toAscii(true));
-  }
-  logAdd("The string variable named " + name + " could not be located in range 0x" + base.toString(16) + " - 0x" + (base + size).toString(16));
-  return exploit_addr;
-}
-*/
-/*
 function findJsVariableOffset(name,exploit_data,base,size)
 {
 	readMemory(base,size);
@@ -2483,7 +2447,6 @@ function findJsVariableOffset(name,exploit_data,base,size)
 	logAdd("The string variable named "+name+" could not be located in range 0x"+base.toString(16)+" - 0x"+end_range.toString(16));
 	return 0;
 }
-*/
 //########################## ROP Framework functions by bguerville(currently under development) #########################
 function copy_file_overwrite(frm,to,fd_frm,fd_to,buf,rlen,wlen,stat,nl,st_size)
 {
